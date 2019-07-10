@@ -103,6 +103,9 @@ function varargout = plot_google_map(varargin)
 % Author:
 %  Zohar Bar-Yehuda
 %
+% Version 2.1 - 10/07/2019
+%       - Implemented Aroen's changes to use OSM instead of Google.
+%
 % Version 2.0 - 08/04/2018
 %       - Add an option to show a map scale
 %       - Several bugfixes
@@ -446,16 +449,11 @@ else
 end
 
 try
-    urlwrite(url,filepath);
+    urlwrite(url,filepath);   
 catch % error downloading map
-    warning(['Unable to download map form Google Servers.\n' ...
-        'Matlab error was: %s\n\n' ...
-        'Possible reasons: missing write permissions, no network connection, quota exceeded, or some other error.\n' ...
-        'Consider using an API key if quota problems persist.\n\n' ...
-        'To debug, try pasting the following URL in your browser, which may result in a more informative error:\n%s'], lasterr, url);
-    varargout{1} = [];
-    varargout{2} = [];
-    varargout{3} = [];
+    %Plot OSM map
+    coords = getMapcoords;
+    Map(gca,coords,'osm');
     return
 end
 
