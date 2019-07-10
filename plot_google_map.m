@@ -104,7 +104,8 @@ function varargout = plot_google_map(varargin)
 %  Zohar Bar-Yehuda
 %
 % Version 2.1 - 10/07/2019
-%       - Implemented Aroen's changes to use OSM instead of Google.
+%       - Added proposed workaround from colleague into sourcecode to use
+%       OSM
 %
 % Version 2.0 - 08/04/2018
 %       - Add an option to show a map scale
